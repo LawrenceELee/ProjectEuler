@@ -35,20 +35,6 @@ public class Problem1{
         return results;
     }
 
-    /** *************************************************
-     * Calculates sum of a list of numbers.
-     *
-     * @param nums list of numbers to be totalled.
-     * @return total value of nums.
-     * ************************************************** */
-    public static int sum(ArrayList<Integer> nums){
-        int total = 0;
-        for( int num: nums ){
-            total += num;
-        }
-        return total;
-    }
-
     public static void main(String args[]){
         int ans = 0;
 
