@@ -28,10 +28,20 @@ public class Problem1{
         return results;
     }
 
-    public static void main(String args[]){
-        String ans = null;
+    public static int sum(ArrayList<Integer> nums){
+        int total = 0;
 
-        ans = findMultiples(10).toString();
+        for( int num: nums ){
+            total += num;
+        }
+
+        return total;
+    }
+
+    public static void main(String args[]){
+        int ans = 0;
+
+        ans = sum(findMultiples(10));
         findMultiples(1000);
 
         System.out.println(ans);
