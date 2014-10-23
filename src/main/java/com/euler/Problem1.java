@@ -14,27 +14,38 @@ import java.util.ArrayList;
 public class Problem1{
 
     /** *************************************************
+     * Checks if a number is a multiple using the modulus operator.
+     *
+     * @param max is the upper limit.
+     * @return a list of the multiples of 3 or 5 less than max limit.
+     *
      * ************************************************** */
     public static ArrayList<Integer> findMultiples(int max){
         ArrayList<Integer> results = new ArrayList<>();
 
-        int a = 3, b = 5;
+        //start at 1 instead of 0 b/c 0 % anything is always 0
+        int count = 1;  
 
-        results.add(3);
-        results.add(5);
-        results.add(6);
-        results.add(9);
-
+        while( count < max ){
+            if( (count % 3)==0 || (count % 5)==0 ){
+                results.add(count);
+            }
+            count++;
+        }
         return results;
     }
 
+    /** *************************************************
+     * Calculates sum of a list of numbers.
+     *
+     * @param nums list of numbers to be totalled.
+     * @return total value of nums.
+     * ************************************************** */
     public static int sum(ArrayList<Integer> nums){
         int total = 0;
-
         for( int num: nums ){
             total += num;
         }
-
         return total;
     }
 
@@ -42,8 +53,9 @@ public class Problem1{
         int ans = 0;
 
         ans = sum(findMultiples(10));
-        findMultiples(1000);
+        System.out.println(ans);
 
+        ans = sum(findMultiples(1000));
         System.out.println(ans);
     }
 }
