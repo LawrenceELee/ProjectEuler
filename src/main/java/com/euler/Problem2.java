@@ -20,13 +20,13 @@ import java.math.BigInteger;
 public class Problem2{
 
     /** *************************************************
-     * Generates a list of the fibonacci numbers up to Nth fib num,
+     * Generates a list of the fibonacci numbers up to max,
      * iteratively instead of recusively.
      *
-     * @param n get all fib nums up to Nth fib num
+     * @param n get all fib nums up to max.
      * @return a list of the fib nums
      * ************************************************** */
-    public static ArrayList<BigInteger> generateFib(BigInteger n){
+    public static ArrayList<BigInteger> generateFib(BigInteger max){
         ArrayList<BigInteger> fibnums = new ArrayList<>();
 
         //fn is f "subscript" n, fn1 is f "subscript" n "minus" 1, etc
@@ -39,9 +39,9 @@ public class Problem2{
         fn2 = BigInteger.ZERO;
         fn1 = BigInteger.ONE;
 
-        BigInteger count = BigInteger.ZERO;
+        //BigInteger count = BigInteger.ZERO;
 
-        while(count.compareTo(n) < 0){
+        while(fn.compareTo(max) < 0){
             //BigInteger is immutable, so have to do += the way below:
             //reference: http://stackoverflow.com/questions/1783912/java-how-to-use-biginteger
             fn = fn1.add(fn2);
@@ -53,7 +53,6 @@ public class Problem2{
             fn1 = fn;
 
             fibnums.add(fn);
-            count = count.add(BigInteger.ONE);
         }
         return fibnums;
     }
@@ -93,8 +92,9 @@ public class Problem2{
 
         System.out.println("sum: " + Helper.sum(evens));
 
-        //System.out.println(getEvens(generateFib(4000000)));
-        //System.out.println(Helper.sum(getEvens(generateFib(4000000))));
+        //System.out.println(getEvens(generateFib(Helper.BIGHUN)));
+
+        System.out.println(Helper.sum(getEvens(generateFib(BigInteger.valueOf(4000000)))));
     }
 
 }

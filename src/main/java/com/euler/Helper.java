@@ -11,6 +11,7 @@ import java.math.BigInteger;
 public class Helper{
 
     final static BigInteger BIGTEN = BigInteger.valueOf(10);
+    final static BigInteger BIGHUN = BigInteger.valueOf(100);
     final static BigInteger BIGTHOU = BigInteger.valueOf(1000);
 
     /** *************************************************
