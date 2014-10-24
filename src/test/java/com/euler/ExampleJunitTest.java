@@ -8,8 +8,11 @@ public class ExampleJunitTest{
     @Test
     public void testPasses() {
         String expected = "Hello, JUnit!";
-        String hello = "Hello, JUnit!";
-        assertEquals(hello, expected);
+        String result = "Hello, JUnit!";
+
+        //exptected output is arg1, result from function testing is arg2.
+        //otherwise junit output will be confusing.
+        assertEquals(expected, result);
     }
 
     @Test

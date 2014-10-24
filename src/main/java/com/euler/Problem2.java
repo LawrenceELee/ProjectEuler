@@ -13,6 +13,88 @@
 
 package com.euler;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.math.BigInteger;
+
 public class Problem2{
+
+    /** *************************************************
+     * Generates a list of the fibonacci numbers up to Nth fib num,
+     * iteratively instead of recusively.
+     *
+     * @param n get all fib nums up to Nth fib num
+     * @return a list of the fib nums
+     * ************************************************** */
+    public static ArrayList<BigInteger> generateFib(BigInteger n){
+        ArrayList<BigInteger> fibnums = new ArrayList<>();
+
+        //fn is f "subscript" n, fn1 is f "subscript" n "minus" 1, etc
+        BigInteger fn, fn1, fn2;
+
+        //by definition:
+        //fib(0) == 0
+        //fib(1) == 1
+        fn =  BigInteger.ZERO;
+        fn2 = BigInteger.ZERO;
+        fn1 = BigInteger.ONE;
+
+        BigInteger count = BigInteger.ZERO;
+
+        while(count.compareTo(n) < 0){
+            //BigInteger is immutable, so have to do += the way below:
+            //reference: http://stackoverflow.com/questions/1783912/java-how-to-use-biginteger
+            fn = fn1.add(fn2);
+            //fn = fn1 + fn2;
+
+            //treate fn2 and fn1 like a tmp vars.
+            //can discard old values of fn2 and fn1 once it is used to find fn
+            fn2 = fn1;  //save fn1 to fn2 BEFORE overwriting fn1 with fn.
+            fn1 = fn;
+
+            fibnums.add(fn);
+            count = count.add(BigInteger.ONE);
+        }
+        return fibnums;
+    }
+
+    public static ArrayList<BigInteger> getEvens(ArrayList<BigInteger> fibnums){
+        //You can't remove from a list if you are using a "for each" loop
+        //Otherwise, you'll get a ConcurrentModificationException
+        //reference: http://stackoverflow.com/questions/3184883/concurrentmodificationexception-for-arraylist
+        //as a work around, use Iterator
+        //(which "for each" is syntaxtic suguar for)
+        //using iterator doesn't fix the concurrent exception,
+        //just use the extra memory and create a new ArrayList
+        /*
+        for( Iterator<Long> it = fibnums.iterator(); it.hasNext(); ){
+            long num = it.next();
+            if( !Helper.isEven(num) ){
+                fibnums.remove(num);
+            }
+        }
+        */
+        ArrayList<BigInteger> evens = new ArrayList<>();
+        for( BigInteger num: fibnums ){
+            if( Helper.isEven(num) ){
+                evens.add(num);
+            }
+        }
+        return evens;
+    }
+
+    public static void main(String args[]){
+
+        ArrayList<BigInteger> fibs = generateFib(BigInteger.valueOf(10));
+        System.out.println("1st 10 fib nums: " + fibs.toString());
+        
+        ArrayList<BigInteger> evens = getEvens(fibs);
+        System.out.println("even fib nums: " + evens);
+
+        System.out.println("sum: " + Helper.sum(evens));
+
+        //System.out.println(getEvens(generateFib(4000000)));
+        //System.out.println(Helper.sum(getEvens(generateFib(4000000))));
+    }
 
 }

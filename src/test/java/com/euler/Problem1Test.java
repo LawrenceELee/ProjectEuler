@@ -1,3 +1,7 @@
+/** *************************************************
+ * Junit tests for problem1.
+ * ************************************************** */
+
 package com.euler;
 
 import org.junit.Test;
@@ -14,21 +18,17 @@ public class Problem1Test{
         String expected = "[3, 5, 6, 9]";
         String result = null;
 
-        result = Problem1.findMultiples(10).toString();
+        result = Problem1.findMultiples(Helper.BIGTEN).toString();
 
-        assertEquals(result, expected);
+        assertEquals(expected, result);
     }
 
-    /** *************************************************
-     * Simple test to ensure sum() method works for simple cases.
-     *
-     * ************************************************** */
-    @Test
-    public void testSum() {
-        int expected = 23;
-        int result = 0;
+    public void testFind1000(){
+        String expected = "233168";
+        String result = Helper.sum(Problem1.findMultiples(Helper.BIGTHOU));
 
-        result = Problem1.sum(Problem1.findMultiples(10));
-        assertEquals(result, expected);
+        assertEquals(expected, result);
     }
+    
+
 }

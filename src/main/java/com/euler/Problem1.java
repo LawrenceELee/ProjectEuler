@@ -10,6 +10,7 @@
 package com.euler;
 
 import java.util.ArrayList;
+import java.math.BigInteger;
 
 public class Problem1{
 
@@ -20,28 +21,32 @@ public class Problem1{
      * @return a list of the multiples of 3 or 5 less than max limit.
      *
      * ************************************************** */
-    public static ArrayList<Integer> findMultiples(int max){
-        ArrayList<Integer> results = new ArrayList<>();
+    public static ArrayList<BigInteger> findMultiples(BigInteger max){
+        ArrayList<BigInteger> results = new ArrayList<>();
 
         //start at 1 instead of 0 b/c 0 % anything is always 0
-        int count = 1;  
+        BigInteger count = BigInteger.ONE;
 
-        while( count < max ){
-            if( (count % 3)==0 || (count % 5)==0 ){
+        while( count.compareTo(max) < 0 ){
+            if( count.mod(BigInteger.valueOf(3)).compareTo(BigInteger.ZERO)==0
+                ||
+                count.mod(BigInteger.valueOf(5)).compareTo(BigInteger.ZERO)==0
+            ){
                 results.add(count);
             }
-            count++;
+            count = count.add(BigInteger.ONE);
         }
         return results;
     }
 
     public static void main(String args[]){
-        int ans = 0;
+        String ans = null;
 
-        ans = sum(findMultiples(10));
+        ans = Helper.sum(findMultiples(Helper.BIGTEN));
         System.out.println(ans);
 
-        ans = sum(findMultiples(1000));
+        ans = Helper.sum(findMultiples(Helper.BIGTHOU));
+        //answer should be 233168
         System.out.println(ans);
     }
 }
